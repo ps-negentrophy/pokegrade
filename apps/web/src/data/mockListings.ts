@@ -235,8 +235,8 @@ export function formatPrice(price: number, currency: string): string {
 }
 
 export function getGradeBadgeColor(grader: string, grade: number): string {
-  if (grade === 10) return "bg-yellow-100 text-yellow-800 border border-yellow-300";
-  if (grade >= 9) return "bg-blue-100 text-blue-800 border border-blue-300";
-  if (grade >= 7) return "bg-green-100 text-green-800 border border-green-300";
-  return "bg-gray-100 text-gray-700 border border-gray-200";
+  if (grade === 10) return "bg-black text-white border border-black";
+  if (grade >= 9) return "bg-gray-800 text-white border border-gray-800";
+  if (grade >= 7) return "bg-gray-100 text-gray-700 border border-gray-200";
+  return "bg-gray-50 text-gray-500 border border-gray-100";
 }

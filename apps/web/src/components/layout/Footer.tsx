@@ -7,11 +7,12 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-red text-white font-black text-lg">
-                P
+              <div className="relative flex h-9 w-9 items-center justify-center shrink-0">
+                <span className="text-[32px] text-white leading-none select-none">♣</span>
+                <span className="absolute text-gray-900 font-black text-[11px] leading-none mt-0.5">✕</span>
               </div>
               <span className="text-lg font-black text-white">
-                Poke<span className="text-brand-red">Grade</span>
+                Ten<span className="text-gray-400">Only</span>
               </span>
             </div>
             <p className="text-sm leading-relaxed">
@@ -52,7 +53,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <p>© 2024 PokeGrade Ltd. All rights reserved.</p>
+          <p>© 2024 TenOnly Ltd. All rights reserved.</p>
           <p>Not affiliated with Nintendo, Game Freak, or The Pokémon Company.</p>
         </div>
       </div>

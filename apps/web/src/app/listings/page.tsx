@@ -70,7 +70,7 @@ export default function ListingsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <h1 className="text-2xl font-black text-gray-900">Browse Listings</h1>
-          <p className="text-sm text-gray-500 mt-1">{filtered.length} cards found</p>
+          <p className="text-sm text-gray-400 mt-1">{filtered.length} cards found</p>
         </div>
 
         <div className="flex items-center gap-3">
@@ -81,7 +81,7 @@ export default function ListingsPage() {
             <SlidersHorizontal className="h-4 w-4" />
             Filters
             {activeFilterCount > 0 && (
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-red text-white text-xs font-bold">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-900 text-white text-xs font-bold">
                 {activeFilterCount}
               </span>
             )}
@@ -115,13 +115,13 @@ export default function ListingsPage() {
       </div>
 
       <div className="flex gap-6">
-        {/* Sidebar filters (desktop) */}
+        {/* Sidebar filters */}
         <aside className={`shrink-0 w-64 space-y-6 ${filtersOpen ? "block" : "hidden"} lg:block`}>
           <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-card">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-bold text-gray-900">Filters</h3>
               {activeFilterCount > 0 && (
-                <button onClick={clearFilters} className="text-xs text-brand-red hover:underline flex items-center gap-1">
+                <button onClick={clearFilters} className="text-xs text-gray-500 hover:text-gray-900 hover:underline flex items-center gap-1">
                   <X className="h-3 w-3" /> Clear all
                 </button>
               )}
@@ -129,7 +129,7 @@ export default function ListingsPage() {
 
             {/* Grader */}
             <div className="mb-5">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Grading Company</p>
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Grading Company</p>
               <div className="space-y-2">
                 {GRADERS.map((g) => (
                   <label key={g} className="flex items-center gap-2 cursor-pointer">
@@ -137,7 +137,7 @@ export default function ListingsPage() {
                       type="checkbox"
                       checked={selectedGraders.includes(g)}
                       onChange={() => toggleGrader(g)}
-                      className="rounded border-gray-300 text-brand-red focus:ring-brand-red"
+                      className="rounded border-gray-300 text-gray-900 focus:ring-black"
                     />
                     <span className="text-sm text-gray-700">{g}</span>
                   </label>
@@ -147,7 +147,7 @@ export default function ListingsPage() {
 
             {/* Set */}
             <div className="mb-5">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Set</p>
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Set</p>
               <div className="space-y-2">
                 {SETS.map((s) => (
                   <label key={s} className="flex items-center gap-2 cursor-pointer">
@@ -155,7 +155,7 @@ export default function ListingsPage() {
                       type="checkbox"
                       checked={selectedSets.includes(s)}
                       onChange={() => toggleSet(s)}
-                      className="rounded border-gray-300 text-brand-red focus:ring-brand-red"
+                      className="rounded border-gray-300 text-gray-900 focus:ring-black"
                     />
                     <span className="text-sm text-gray-700">{s}</span>
                   </label>
@@ -165,7 +165,7 @@ export default function ListingsPage() {
 
             {/* Listing type */}
             <div className="mb-5">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Listing Type</p>
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Listing Type</p>
               <div className="flex gap-2 flex-wrap">
                 {["all", "fixed", "auction", "trade"].map((t) => (
                   <button
@@ -173,8 +173,8 @@ export default function ListingsPage() {
                     onClick={() => setListingType(t)}
                     className={`rounded-full px-3 py-1 text-xs font-medium border transition ${
                       listingType === t
-                        ? "bg-brand-red text-white border-brand-red"
-                        : "bg-white text-gray-600 border-gray-200 hover:border-gray-300"
+                        ? "bg-gray-900 text-white border-gray-900"
+                        : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
                     }`}
                   >
                     {t.charAt(0).toUpperCase() + t.slice(1)}
@@ -185,7 +185,7 @@ export default function ListingsPage() {
 
             {/* Grade */}
             <div className="mb-5">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Min Grade</p>
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Min Grade</p>
               <input
                 type="number"
                 min={1}
@@ -200,7 +200,7 @@ export default function ListingsPage() {
 
             {/* Price */}
             <div className="mb-5">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Price (USD)</p>
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Price (USD)</p>
               <div className="flex gap-2">
                 <input
                   type="number"
@@ -225,7 +225,7 @@ export default function ListingsPage() {
                 type="checkbox"
                 checked={firstEdOnly}
                 onChange={(e) => setFirstEdOnly(e.target.checked)}
-                className="rounded border-gray-300 text-brand-red focus:ring-brand-red"
+                className="rounded border-gray-300 text-gray-900 focus:ring-black"
               />
               <span className="text-sm text-gray-700 font-medium">1st Edition only</span>
             </label>
@@ -236,9 +236,9 @@ export default function ListingsPage() {
         <div className="flex-1 min-w-0">
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 text-center">
-              <p className="text-4xl mb-4">🔍</p>
+              <p className="text-4xl mb-4 grayscale">🔍</p>
               <h3 className="text-lg font-bold text-gray-900 mb-2">No listings found</h3>
-              <p className="text-gray-500 text-sm max-w-xs">Try adjusting your filters or search query.</p>
+              <p className="text-gray-400 text-sm max-w-xs">Try adjusting your filters or search query.</p>
               <button onClick={clearFilters} className="btn-primary mt-6">Clear Filters</button>
             </div>
           ) : (

@@ -5,13 +5,13 @@ import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "PokeGrade — Graded Pokémon Card Marketplace",
-    template: "%s | PokeGrade",
+    default: "TenOnly — Graded Pokémon Card Marketplace",
+    template: "%s | TenOnly",
   },
   description: "Buy, sell, and trade authenticated graded Pokémon cards. PSA, BGS, CGC, and SGC certified. Trusted by collectors worldwide.",
   keywords: ["Pokemon cards", "PSA", "BGS", "graded cards", "Charizard", "1st edition", "marketplace"],
   openGraph: {
-    title: "PokeGrade — Graded Pokémon Card Marketplace",
+    title: "TenOnly — Graded Pokémon Card Marketplace",
     description: "The premier marketplace for graded Pokémon cards.",
     type: "website",
   },

@@ -75,7 +75,7 @@ export default function SellPage() {
     <div className="mx-auto max-w-2xl px-4 sm:px-6 py-10">
       <div className="mb-8">
         <h1 className="text-3xl font-black text-gray-900">List a Card</h1>
-        <p className="text-gray-500 mt-1">Sell your graded Pokémon card to thousands of collectors worldwide.</p>
+        <p className="text-gray-400 mt-1">Sell your graded Pokémon card to thousands of collectors worldwide.</p>
       </div>
 
       {/* Step indicator */}
@@ -85,44 +85,43 @@ export default function SellPage() {
             <div className="flex flex-col items-center">
               <div className={`flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold border-2 transition-all ${
                 step > s.id
-                  ? "bg-green-500 border-green-500 text-white"
+                  ? "bg-gray-900 border-gray-900 text-white"
                   : step === s.id
-                  ? "bg-brand-red border-brand-red text-white shadow-lg shadow-brand-red/30"
+                  ? "bg-black border-black text-white shadow-lg"
                   : "bg-white border-gray-200 text-gray-400"
               }`}>
                 {step > s.id ? <CheckCircle className="h-5 w-5" /> : s.id}
               </div>
-              <span className={`mt-1 text-xs font-medium ${step === s.id ? "text-brand-red" : "text-gray-400"}`}>
+              <span className={`mt-1 text-xs font-medium ${step === s.id ? "text-gray-900" : "text-gray-400"}`}>
                 {s.label}
               </span>
             </div>
             {i < STEPS.length - 1 && (
-              <div className={`flex-1 h-0.5 mx-2 mt-[-1rem] transition-colors ${step > s.id ? "bg-green-400" : "bg-gray-200"}`} />
+              <div className={`flex-1 h-0.5 mx-2 mt-[-1rem] transition-colors ${step > s.id ? "bg-gray-900" : "bg-gray-200"}`} />
             )}
           </div>
         ))}
       </div>
 
       {/* Step content */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-card p-6 sm:p-8">
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8">
         {/* Step 1: Photos */}
         {step === 1 && (
           <div>
             <h2 className="text-xl font-bold text-gray-900 mb-1">Upload Photos</h2>
-            <p className="text-sm text-gray-500 mb-6">Upload up to 4 photos: front, back, label, and full slab. High-quality images lead to faster sales.</p>
+            <p className="text-sm text-gray-400 mb-6">Upload up to 4 photos: front, back, label, and full slab. High-quality images lead to faster sales.</p>
 
-            {/* Drop zone */}
             <div
               onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
               onDragLeave={() => setIsDragging(false)}
               onDrop={(e) => { e.preventDefault(); setIsDragging(false); handleFileDrop(e.dataTransfer.files); }}
               onClick={() => fileInputRef.current?.click()}
               className={`relative flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed p-10 cursor-pointer transition ${
-                isDragging ? "border-brand-red bg-red-50" : "border-gray-300 hover:border-gray-400 bg-gray-50 hover:bg-gray-100"
+                isDragging ? "border-gray-900 bg-gray-50" : "border-gray-200 hover:border-gray-400 bg-gray-50 hover:bg-gray-100"
               }`}
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-200">
-                <Upload className="h-7 w-7 text-gray-500" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-100">
+                <Upload className="h-7 w-7 text-gray-400" />
               </div>
               <div className="text-center">
                 <p className="font-semibold text-gray-700">Drag &amp; drop or click to upload</p>
@@ -138,13 +137,11 @@ export default function SellPage() {
               />
             </div>
 
-            {/* Camera note */}
-            <div className="mt-3 flex items-center gap-2 text-xs text-gray-400 bg-blue-50 rounded-lg px-3 py-2">
-              <Camera className="h-4 w-4 text-blue-400 shrink-0" />
+            <div className="mt-3 flex items-center gap-2 text-xs text-gray-400 bg-gray-50 rounded-lg px-3 py-2 border border-gray-100">
+              <Camera className="h-4 w-4 shrink-0" />
               <span>On mobile, you can take photos directly with your camera when uploading.</span>
             </div>
 
-            {/* Preview grid */}
             {images.length > 0 && (
               <div className="mt-6 grid grid-cols-4 gap-3">
                 {images.map((img, i) => (
@@ -162,7 +159,7 @@ export default function SellPage() {
                 {images.length < 4 && (
                   <button
                     onClick={() => fileInputRef.current?.click()}
-                    className="aspect-square rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center hover:border-gray-400 transition"
+                    className="aspect-square rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center hover:border-gray-400 transition"
                   >
                     <span className="text-3xl text-gray-300">+</span>
                   </button>
@@ -216,11 +213,11 @@ export default function SellPage() {
 
             <div className="flex gap-6 pt-2">
               <label className="flex items-center gap-2.5 cursor-pointer">
-                <input type="checkbox" checked={isFirstEdition} onChange={(e) => setIsFirstEdition(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-brand-red focus:ring-brand-red" />
+                <input type="checkbox" checked={isFirstEdition} onChange={(e) => setIsFirstEdition(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-black" />
                 <span className="text-sm font-medium text-gray-700">1st Edition</span>
               </label>
               <label className="flex items-center gap-2.5 cursor-pointer">
-                <input type="checkbox" checked={isShadowless} onChange={(e) => setIsShadowless(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-brand-red focus:ring-brand-red" />
+                <input type="checkbox" checked={isShadowless} onChange={(e) => setIsShadowless(e.target.checked)} className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-black" />
                 <span className="text-sm font-medium text-gray-700">Shadowless</span>
               </label>
             </div>
@@ -232,8 +229,8 @@ export default function SellPage() {
           <div className="space-y-5">
             <h2 className="text-xl font-bold text-gray-900">Grading Details</h2>
 
-            <div className="bg-blue-50 rounded-lg p-3 flex gap-2 text-sm text-blue-700">
-              <Info className="h-5 w-5 shrink-0 mt-0.5" />
+            <div className="bg-gray-50 rounded-lg p-3 flex gap-2 text-sm text-gray-600 border border-gray-100">
+              <Info className="h-5 w-5 shrink-0 mt-0.5 text-gray-400" />
               <span>We verify every cert number against the grading company&apos;s database before your listing goes live.</span>
             </div>
 
@@ -246,8 +243,8 @@ export default function SellPage() {
                     onClick={() => setGrader(g)}
                     className={`rounded-xl border-2 py-3 text-sm font-bold transition ${
                       grader === g
-                        ? "border-brand-red bg-red-50 text-brand-red"
-                        : "border-gray-200 text-gray-500 hover:border-gray-300"
+                        ? "border-gray-900 bg-gray-900 text-white"
+                        : "border-gray-200 text-gray-500 hover:border-gray-400"
                     }`}
                   >
                     {g}
@@ -265,10 +262,8 @@ export default function SellPage() {
                     onClick={() => setGrade(g.toString())}
                     className={`rounded-xl border-2 py-2.5 text-sm font-bold transition ${
                       grade === g.toString()
-                        ? g === 10
-                          ? "border-yellow-400 bg-yellow-50 text-yellow-700"
-                          : "border-brand-red bg-red-50 text-brand-red"
-                        : "border-gray-200 text-gray-500 hover:border-gray-300"
+                        ? "border-gray-900 bg-gray-900 text-white"
+                        : "border-gray-200 text-gray-500 hover:border-gray-400"
                     }`}
                   >
                     {g}
@@ -308,11 +303,11 @@ export default function SellPage() {
                     onClick={() => setListingType(t.value as "fixed" | "auction" | "trade")}
                     className={`text-left rounded-xl border-2 p-3 transition ${
                       listingType === t.value
-                        ? "border-brand-red bg-red-50"
+                        ? "border-gray-900 bg-gray-50"
                         : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
-                    <p className={`text-sm font-bold ${listingType === t.value ? "text-brand-red" : "text-gray-700"}`}>{t.label}</p>
+                    <p className={`text-sm font-bold ${listingType === t.value ? "text-gray-900" : "text-gray-600"}`}>{t.label}</p>
                     <p className="text-xs text-gray-400 mt-0.5">{t.desc}</p>
                   </button>
                 ))}
@@ -366,9 +361,9 @@ export default function SellPage() {
               />
             </div>
 
-            <div className="bg-yellow-50 rounded-lg p-3 text-sm text-yellow-700 border border-yellow-200">
+            <div className="bg-gray-50 rounded-lg p-3 text-sm text-gray-600 border border-gray-200">
               <p className="font-semibold mb-0.5">Platform fee: 5%</p>
-              <p className="text-xs">
+              <p className="text-xs text-gray-400">
                 {price ? `You'll receive approx. ${new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 0 }).format(parseFloat(price) * 0.95)} after fees.` : "Enter a price to see your earnings."}
               </p>
             </div>
@@ -384,7 +379,7 @@ export default function SellPage() {
               {images.length > 0 && (
                 <div className="flex gap-2">
                   {images.map((img, i) => (
-                    <div key={i} className="relative w-16 aspect-square rounded-lg overflow-hidden bg-gray-100">
+                    <div key={i} className="relative w-16 aspect-square rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
                       <Image src={img.url} alt={img.label} fill className="object-contain p-1" sizes="64px" />
                     </div>
                   ))}
@@ -404,7 +399,7 @@ export default function SellPage() {
                   { label: "Shipping", value: shippingCost && parseFloat(shippingCost) > 0 ? `${currency} ${shippingCost}` : "Free" },
                 ].map((row) => (
                   <div key={row.label} className="flex justify-between px-4 py-2.5 text-sm">
-                    <span className="text-gray-500">{row.label}</span>
+                    <span className="text-gray-400">{row.label}</span>
                     <span className="font-medium text-gray-900 text-right">{row.value}</span>
                   </div>
                 ))}

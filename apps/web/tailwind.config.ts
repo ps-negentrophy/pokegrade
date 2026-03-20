@@ -6,18 +6,13 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          red: "#CC0000",
-          "red-dark": "#9B0000",
-          "red-light": "#FF3333",
-          yellow: "#FFCB05",
-          "yellow-dark": "#D4A800",
-          blue: "#3B4CCA",
-          "blue-light": "#6070E0",
-        },
-        grade: {
-          gem: "#FFD700",  // PSA 10 / BGS 10
-          pristine: "#C0C0C0",
-          excellent: "#CD7F32",
+          red: "#111827",
+          "red-dark": "#000000",
+          "red-light": "#374151",
+          yellow: "#6B7280",
+          "yellow-dark": "#4B5563",
+          blue: "#374151",
+          "blue-light": "#4B5563",
         },
       },
       fontFamily: {
@@ -28,8 +23,8 @@ const config: Config = {
         card: "12px",
       },
       boxShadow: {
-        card: "0 2px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)",
-        "card-hover": "0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08)",
+        card: "0 1px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)",
+        "card-hover": "0 4px 16px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06)",
       },
     },
   },

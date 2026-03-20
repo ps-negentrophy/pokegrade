@@ -13,25 +13,26 @@ export default function AuthPage() {
   const [displayName, setDisplayName] = useState("");
 
   return (
-    <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-12">
+    <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-gray-50 px-4 py-12">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-red text-white font-black text-2xl shadow-lg shadow-brand-red/30">
-              P
+            <div className="relative flex h-12 w-12 items-center justify-center shrink-0">
+              <span className="text-[42px] text-black leading-none select-none">♣</span>
+              <span className="absolute text-white font-black text-[14px] leading-none mt-0.5">✕</span>
             </div>
             <span className="text-2xl font-black">
-              Poke<span className="text-brand-red">Grade</span>
+              Ten<span className="text-gray-400">Only</span>
             </span>
           </Link>
-          <p className="mt-3 text-gray-500 text-sm">
+          <p className="mt-3 text-gray-400 text-sm">
             {mode === "signin" ? "Welcome back, collector" : "Join thousands of collectors"}
           </p>
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-card p-8">
+        <div className="bg-white rounded-2xl border border-gray-200 p-8">
           {/* Mode toggle */}
           <div className="flex rounded-xl bg-gray-100 p-1 mb-7">
             {(["signin", "signup"] as const).map((m) => (
@@ -39,7 +40,7 @@ export default function AuthPage() {
                 key={m}
                 onClick={() => setMode(m)}
                 className={`flex-1 rounded-lg py-2 text-sm font-semibold transition ${
-                  mode === m ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
+                  mode === m ? "bg-white text-gray-900 shadow-sm" : "text-gray-400 hover:text-gray-600"
                 }`}
               >
                 {m === "signin" ? "Sign In" : "Create Account"}
@@ -48,7 +49,6 @@ export default function AuthPage() {
           </div>
 
           <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
-            {/* Sign up extra fields */}
             {mode === "signup" && (
               <>
                 <div>
@@ -82,7 +82,6 @@ export default function AuthPage() {
               </>
             )}
 
-            {/* Email */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
               <div className="relative">
@@ -98,12 +97,11 @@ export default function AuthPage() {
               </div>
             </div>
 
-            {/* Password */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="text-sm font-medium text-gray-700">Password</label>
                 {mode === "signin" && (
-                  <button type="button" className="text-xs text-brand-red hover:underline">
+                  <button type="button" className="text-xs text-gray-500 hover:text-gray-900 hover:underline">
                     Forgot password?
                   </button>
                 )}
@@ -138,7 +136,7 @@ export default function AuthPage() {
           {/* Divider */}
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-200" />
+              <div className="w-full border-t border-gray-100" />
             </div>
             <div className="relative flex justify-center text-xs">
               <span className="bg-white px-3 text-gray-400">or continue with</span>
@@ -147,16 +145,16 @@ export default function AuthPage() {
 
           {/* OAuth */}
           <button className="w-full flex items-center justify-center gap-3 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
-            <Chrome className="h-5 w-5 text-blue-500" />
+            <Chrome className="h-5 w-5 text-gray-500" />
             Sign {mode === "signin" ? "in" : "up"} with Google
           </button>
 
           {mode === "signup" && (
             <p className="mt-5 text-center text-xs text-gray-400">
               By creating an account, you agree to our{" "}
-              <Link href="/terms" className="text-brand-red hover:underline">Terms</Link>
+              <Link href="/terms" className="text-gray-700 hover:underline">Terms</Link>
               {" "}and{" "}
-              <Link href="/privacy" className="text-brand-red hover:underline">Privacy Policy</Link>.
+              <Link href="/privacy" className="text-gray-700 hover:underline">Privacy Policy</Link>.
             </p>
           )}
         </div>
@@ -164,13 +162,13 @@ export default function AuthPage() {
         {/* Feature trust bullets */}
         <div className="mt-6 grid grid-cols-3 gap-2 text-center">
           {[
-            { emoji: "🛡️", text: "Buyer Protection" },
-            { emoji: "✅", text: "Verified Certs" },
-            { emoji: "🚀", text: "Fast Payouts" },
+            { icon: "🛡️", text: "Buyer Protection" },
+            { icon: "✅", text: "Verified Certs" },
+            { icon: "🚀", text: "Fast Payouts" },
           ].map((item) => (
             <div key={item.text} className="rounded-xl bg-white border border-gray-200 px-3 py-3">
-              <p className="text-xl">{item.emoji}</p>
-              <p className="text-xs text-gray-600 font-medium mt-1">{item.text}</p>
+              <p className="text-xl grayscale">{item.icon}</p>
+              <p className="text-xs text-gray-500 font-medium mt-1">{item.text}</p>
             </div>
           ))}
         </div>

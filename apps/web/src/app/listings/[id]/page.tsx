@@ -31,10 +31,10 @@ export default function ListingDetailPage({ params }: Props) {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8">
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-brand-red transition">Home</Link>
+      <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
+        <Link href="/" className="hover:text-gray-900 transition">Home</Link>
         <span>/</span>
-        <Link href="/listings" className="hover:text-brand-red transition">Browse</Link>
+        <Link href="/listings" className="hover:text-gray-900 transition">Browse</Link>
         <span>/</span>
         <span className="text-gray-900 font-medium truncate">{card.name} {card.grading.grader} {card.grading.grade}</span>
       </nav>
@@ -42,8 +42,7 @@ export default function ListingDetailPage({ params }: Props) {
       <div className="grid lg:grid-cols-2 gap-10">
         {/* Left: Images */}
         <div>
-          {/* Primary image */}
-          <div className="relative aspect-[3/4] max-w-sm mx-auto bg-gradient-to-b from-gray-50 to-gray-100 rounded-2xl overflow-hidden shadow-card">
+          <div className="relative aspect-[3/4] max-w-sm mx-auto bg-gray-50 rounded-2xl overflow-hidden border border-gray-100">
             <Image
               src={card.images[0].url}
               alt={`${card.name} front`}
@@ -53,20 +52,18 @@ export default function ListingDetailPage({ params }: Props) {
               priority
             />
             {type !== "fixed" && (
-              <div className={`absolute top-4 left-4 rounded-full px-3 py-1 text-sm font-bold text-white uppercase shadow-lg ${
-                type === "auction" ? "bg-orange-500" : "bg-green-600"
-              }`}>
+              <div className="absolute top-4 left-4 rounded-full px-3 py-1 text-sm font-bold text-white uppercase bg-gray-800">
                 {type}
               </div>
             )}
           </div>
 
-          {/* Thumb strip (placeholder additional angles) */}
+          {/* Thumb strip */}
           <div className="mt-4 flex gap-2 justify-center">
             {["front", "back", "label", "slab"].map((angle) => (
               <button
                 key={angle}
-                className="relative w-16 aspect-square rounded-lg overflow-hidden border-2 border-gray-200 hover:border-brand-red transition bg-gray-50"
+                className="relative w-16 aspect-square rounded-lg overflow-hidden border-2 border-gray-200 hover:border-gray-900 transition bg-gray-50"
               >
                 <Image
                   src={card.images[0].url}
@@ -83,7 +80,6 @@ export default function ListingDetailPage({ params }: Props) {
 
         {/* Right: Details */}
         <div>
-          {/* Title */}
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -94,16 +90,16 @@ export default function ListingDetailPage({ params }: Props) {
                   <span className="grade-badge bg-black text-white text-sm">1st Edition</span>
                 )}
                 {card.isShadowless && (
-                  <span className="grade-badge bg-purple-100 text-purple-800 border border-purple-300 text-sm">Shadowless</span>
+                  <span className="grade-badge bg-gray-100 text-gray-700 border border-gray-200 text-sm">Shadowless</span>
                 )}
               </div>
 
               <h1 className="text-3xl font-black text-gray-900">{card.name}</h1>
-              <p className="text-gray-500 mt-1">{card.set} · #{card.setNumber} · {card.year}</p>
+              <p className="text-gray-400 mt-1">{card.set} · #{card.setNumber} · {card.year}</p>
             </div>
 
             <div className="flex gap-2 shrink-0">
-              <button className="p-2 rounded-xl border border-gray-200 text-gray-400 hover:text-brand-red hover:border-brand-red transition">
+              <button className="p-2 rounded-xl border border-gray-200 text-gray-400 hover:text-gray-900 hover:border-gray-900 transition">
                 <Heart className="h-5 w-5" />
               </button>
               <button className="p-2 rounded-xl border border-gray-200 text-gray-400 hover:text-gray-600 transition">
@@ -113,17 +109,17 @@ export default function ListingDetailPage({ params }: Props) {
           </div>
 
           {/* Price */}
-          <div className="mt-6 p-5 bg-gray-50 rounded-xl border border-gray-200">
+          <div className="mt-6 p-5 bg-gray-50 rounded-xl border border-gray-100">
             <div className="flex items-baseline gap-3">
               <span className="text-4xl font-black text-gray-900">{formatPrice(price, currency)}</span>
-              {type === "auction" && <span className="text-sm text-orange-600 font-medium">Current bid</span>}
+              {type === "auction" && <span className="text-sm text-gray-500 font-medium">Current bid</span>}
             </div>
             {listing.shippingCost === 0 ? (
-              <p className="text-sm text-green-600 font-medium mt-1 flex items-center gap-1">
+              <p className="text-sm text-gray-500 font-medium mt-1 flex items-center gap-1">
                 <Truck className="h-4 w-4" /> Free insured shipping
               </p>
             ) : (
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-gray-400 mt-1">
                 + {formatPrice(listing.shippingCost ?? 0, currency)} shipping
               </p>
             )}
@@ -155,8 +151,8 @@ export default function ListingDetailPage({ params }: Props) {
                 { label: "Cert Number", value: card.grading.certNumber },
                 { label: "Graded", value: card.grading.gradedAt ? new Date(card.grading.gradedAt).getFullYear().toString() : "—" },
               ].map((row) => (
-                <div key={row.label} className="bg-gray-50 rounded-lg p-3">
-                  <p className="text-xs text-gray-500">{row.label}</p>
+                <div key={row.label} className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                  <p className="text-xs text-gray-400">{row.label}</p>
                   <p className="font-semibold text-gray-900 mt-0.5">{row.value}</p>
                 </div>
               ))}
@@ -165,7 +161,7 @@ export default function ListingDetailPage({ params }: Props) {
               href={`https://www.psacard.com/cert/${card.grading.certNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 text-sm text-brand-blue hover:underline font-medium"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-900 hover:underline font-medium"
             >
               <ExternalLink className="h-4 w-4" />
               Verify cert on {card.grading.grader}&apos;s website
@@ -182,8 +178,8 @@ export default function ListingDetailPage({ params }: Props) {
                 { label: "Year", value: card.year.toString() },
                 { label: "Set Number", value: `#${card.setNumber}` },
               ].map((row) => (
-                <div key={row.label} className="bg-gray-50 rounded-lg p-3">
-                  <p className="text-xs text-gray-500">{row.label}</p>
+                <div key={row.label} className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                  <p className="text-xs text-gray-400">{row.label}</p>
                   <p className="font-semibold text-gray-900 mt-0.5">{row.value}</p>
                 </div>
               ))}
@@ -194,15 +190,15 @@ export default function ListingDetailPage({ params }: Props) {
           {listing.description && (
             <div className="mt-6">
               <h3 className="font-bold text-gray-900 mb-2">Seller&apos;s Description</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{listing.description}</p>
+              <p className="text-gray-500 text-sm leading-relaxed">{listing.description}</p>
             </div>
           )}
 
           {/* Seller card */}
-          <div className="mt-6 p-4 bg-white rounded-xl border border-gray-200 shadow-card">
+          <div className="mt-6 p-4 bg-white rounded-xl border border-gray-200">
             <h3 className="font-bold text-gray-900 mb-3 text-sm">Sold by</h3>
             <Link href={`/profile/${seller.username}`} className="flex items-center gap-3 hover:opacity-80 transition">
-              <div className="h-12 w-12 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
+              <div className="h-12 w-12 rounded-full bg-gray-100 overflow-hidden flex-shrink-0">
                 <Image
                   src={seller.avatarUrl ?? `https://api.dicebear.com/8.x/avataaars/svg?seed=${seller.username}`}
                   alt={seller.displayName}
@@ -213,11 +209,11 @@ export default function ListingDetailPage({ params }: Props) {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5">
                   <span className="font-semibold text-gray-900 truncate">{seller.displayName}</span>
-                  {seller.isVerified && <CheckCircle className="h-4 w-4 text-blue-500 shrink-0" />}
+                  {seller.isVerified && <CheckCircle className="h-4 w-4 text-gray-500 shrink-0" />}
                 </div>
-                <div className="flex items-center gap-3 mt-0.5 text-xs text-gray-500">
+                <div className="flex items-center gap-3 mt-0.5 text-xs text-gray-400">
                   <span className="flex items-center gap-1">
-                    <Star className="h-3 w-3 text-yellow-500 fill-yellow-500" />
+                    <Star className="h-3 w-3 text-gray-400 fill-gray-400" />
                     {seller.reputationScore} ({seller.totalSales} sales)
                   </span>
                   {seller.location && (
@@ -232,7 +228,7 @@ export default function ListingDetailPage({ params }: Props) {
 
           {/* Shipping destinations */}
           <div className="mt-4">
-            <p className="text-xs text-gray-500 flex items-center gap-1.5">
+            <p className="text-xs text-gray-400 flex items-center gap-1.5">
               <Truck className="h-3.5 w-3.5" />
               Ships to: {listing.shipsTo.join(" · ")}
             </p>
@@ -245,14 +241,13 @@ export default function ListingDetailPage({ params }: Props) {
               { icon: CheckCircle, text: "Cert Verified" },
               { icon: Truck, text: "Tracked Shipping" },
             ].map((badge) => (
-              <div key={badge.text} className="flex items-center gap-1.5 text-xs text-gray-500 bg-gray-50 rounded-full px-3 py-1.5 border border-gray-200">
-                <badge.icon className="h-3.5 w-3.5 text-brand-red" />
+              <div key={badge.text} className="flex items-center gap-1.5 text-xs text-gray-500 bg-gray-50 rounded-full px-3 py-1.5 border border-gray-100">
+                <badge.icon className="h-3.5 w-3.5 text-gray-700" />
                 {badge.text}
               </div>
             ))}
           </div>
 
-          {/* View count */}
           <p className="mt-4 text-xs text-gray-400 flex items-center gap-1">
             <Eye className="h-3.5 w-3.5" />
             {listing.viewCount.toLocaleString()} views · {listing.watchCount} watching
@@ -260,7 +255,6 @@ export default function ListingDetailPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Back link */}
       <div className="mt-12">
         <Link href="/listings" className="btn-secondary inline-flex items-center gap-2">
           <ArrowLeft className="h-4 w-4" /> Back to Browse

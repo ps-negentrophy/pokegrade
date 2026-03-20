@@ -25,9 +25,9 @@ export default function ProfilePage({ params }: Props) {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-8">
       {/* Profile header */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-card overflow-hidden mb-8">
+      <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden mb-8">
         {/* Banner */}
-        <div className="h-32 bg-gradient-to-r from-brand-red via-brand-red-dark to-brand-blue" />
+        <div className="h-32 bg-black" />
 
         <div className="px-6 pb-6">
           {/* Avatar */}
@@ -53,10 +53,10 @@ export default function ProfilePage({ params }: Props) {
               <div className="flex items-center gap-2">
                 <h1 className="text-2xl font-black text-gray-900">{seller.displayName}</h1>
                 {seller.isVerified && (
-                  <CheckCircle className="h-6 w-6 text-blue-500" />
+                  <CheckCircle className="h-6 w-6 text-gray-500" />
                 )}
               </div>
-              <p className="text-gray-500 text-sm">@{seller.username}</p>
+              <p className="text-gray-400 text-sm">@{seller.username}</p>
             </div>
           </div>
 
@@ -65,7 +65,7 @@ export default function ProfilePage({ params }: Props) {
           )}
 
           {/* Meta */}
-          <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-500">
+          <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-400">
             {seller.location && (
               <span className="flex items-center gap-1.5">
                 <MapPin className="h-4 w-4" /> {seller.location}
@@ -80,40 +80,16 @@ export default function ProfilePage({ params }: Props) {
           {/* Stats */}
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              {
-                icon: Star,
-                label: "Reputation",
-                value: seller.reputationScore.toString(),
-                sub: "out of 5.0",
-                color: "text-yellow-500",
-              },
-              {
-                icon: Package,
-                label: "Total Sales",
-                value: seller.totalSales.toString(),
-                sub: "completed",
-                color: "text-brand-red",
-              },
-              {
-                icon: ShoppingCart,
-                label: "Purchases",
-                value: seller.totalPurchases.toString(),
-                sub: "orders placed",
-                color: "text-brand-blue",
-              },
-              {
-                icon: Shield,
-                label: "Status",
-                value: seller.isVerified ? "Verified" : "Standard",
-                sub: "seller tier",
-                color: seller.isVerified ? "text-blue-500" : "text-gray-400",
-              },
+              { icon: Star, label: "Reputation", value: seller.reputationScore.toString(), sub: "out of 5.0" },
+              { icon: Package, label: "Total Sales", value: seller.totalSales.toString(), sub: "completed" },
+              { icon: ShoppingCart, label: "Purchases", value: seller.totalPurchases.toString(), sub: "orders placed" },
+              { icon: Shield, label: "Status", value: seller.isVerified ? "Verified" : "Standard", sub: "seller tier" },
             ].map((stat) => (
               <div key={stat.label} className="rounded-xl bg-gray-50 border border-gray-100 p-4 text-center">
-                <stat.icon className={`h-5 w-5 mx-auto mb-2 ${stat.color}`} />
+                <stat.icon className="h-5 w-5 mx-auto mb-2 text-gray-400" />
                 <p className="text-xl font-black text-gray-900">{stat.value}</p>
-                <p className="text-xs text-gray-500 mt-0.5">{stat.label}</p>
-                <p className="text-[10px] text-gray-400">{stat.sub}</p>
+                <p className="text-xs text-gray-400 mt-0.5">{stat.label}</p>
+                <p className="text-[10px] text-gray-300">{stat.sub}</p>
               </div>
             ))}
           </div>
@@ -127,8 +103,8 @@ export default function ProfilePage({ params }: Props) {
             key={tab}
             className={`px-4 py-2.5 text-sm font-medium border-b-2 transition ${
               i === 0
-                ? "border-brand-red text-brand-red"
-                : "border-transparent text-gray-500 hover:text-gray-700"
+                ? "border-gray-900 text-gray-900"
+                : "border-transparent text-gray-400 hover:text-gray-700"
             }`}
           >
             {tab}
@@ -150,8 +126,8 @@ export default function ProfilePage({ params }: Props) {
         </div>
       ) : (
         <div className="text-center py-20">
-          <p className="text-4xl mb-3">📭</p>
-          <p className="text-gray-500">No active listings</p>
+          <p className="text-4xl mb-3 grayscale">📭</p>
+          <p className="text-gray-400">No active listings</p>
         </div>
       )}
 
