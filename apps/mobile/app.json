@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "PokeGrade",
+    "slug": "pokegrade",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#CC0000"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pokegrade.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#CC0000"
+      },
+      "package": "com.pokegrade.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow PokeGrade to access your camera to photograph cards."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow PokeGrade to access your photos to upload card images."
+        }
+      ]
+    ],
+    "scheme": "pokegrade",
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
